@@ -1,0 +1,1428 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Traffic\_Light\_Classifier}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{traffic-light-classifier}{%
+\subsection{\# Traffic Light
+Classifier}\label{traffic-light-classifier}}
+
+In this project, you'll use your knowledge of computer vision techniques
+to build a classifier for images of traffic lights! You'll be given a
+dataset of traffic light images in which one of three lights is
+illuminated: red, yellow, or green.
+
+In this notebook, you'll pre-process these images, extract features that
+will help us distinguish the different types of images, and use those
+features to classify the traffic light images into three classes: red,
+yellow, or green. The tasks will be broken down into a few sections:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Loading and visualizing the data}. The first step in any
+  classification task is to be familiar with your data; you'll need to
+  load in the images of traffic lights and visualize them!
+\item
+  \textbf{Pre-processing}. The input images and output labels need to be
+  standardized. This way, you can analyze all the input images using the
+  same classification pipeline, and you know what output to expect when
+  you eventually classify a \emph{new} image.
+\item
+  \textbf{Feature extraction}. Next, you'll extract some features from
+  each image that will help distinguish and eventually classify these
+  images.
+\item
+  \textbf{Classification and visualizing error}. Finally, you'll write
+  one function that uses your features to classify \emph{any} traffic
+  light image. This function will take in an image and output a label.
+  You'll also be given code to determine the accuracy of your
+  classification model.
+\item
+  \textbf{Evaluate your model}. To pass this project, your classifier
+  must be \textgreater{}90\% accurate and never classify any red lights
+  as green; it's likely that you'll need to improve the accuracy of your
+  classifier by changing existing features or adding new features. I'd
+  also encourage you to try to get as close to 100\% accuracy as
+  possible!
+\end{enumerate}
+
+Here are some sample images from the dataset (from left to right: red,
+green, and yellow traffic lights): 
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{heres-what-you-need-to-know-to-complete-the-project}{%
+\subsubsection{\texorpdfstring{\emph{Here's what you need to know to
+complete the
+project:}}{Here's what you need to know to complete the project:}}\label{heres-what-you-need-to-know-to-complete-the-project}}
+
+Some template code has already been provided for you, but you'll need to
+implement additional code steps to successfully complete this project.
+Any code that is required to pass this project is marked with
+\textbf{`(IMPLEMENTATION)'} in the header. There are also a couple of
+questions about your thoughts as you work through this project, which
+are marked with \textbf{`(QUESTION)'} in the header. Make sure to answer
+all questions and to check your work against the
+\href{https://review.udacity.com/\#!/rubrics/1213/view}{project rubric}
+to make sure you complete the necessary classification steps!
+
+Your project submission will be evaluated based on the code
+implementations you provide, and on two main classification criteria.
+Your complete traffic light classifier should have: 1. \textbf{Greater
+than 90\% accuracy} 2. \textbf{\emph{Never} classify red lights as
+green}
+
+    \hypertarget{loading-and-visualizing-the-traffic-light-dataset}{%
+\section{1. Loading and Visualizing the Traffic Light
+Dataset}\label{loading-and-visualizing-the-traffic-light-dataset}}
+
+This traffic light dataset consists of 1484 number of color images in 3
+categories - red, yellow, and green. As with most human-sourced data,
+the data is not evenly distributed among the types. There are: * 904 red
+traffic light images * 536 green traffic light images * 44 yellow
+traffic light images
+
+\emph{Note: All images come from this
+\href{https://selfdrivingcars.mit.edu/}{MIT self-driving car course} and
+are licensed under a
+\href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+Attribution-ShareAlike 4.0 International License}.}
+
+    \hypertarget{import-resources}{%
+\subsubsection{Import resources}\label{import-resources}}
+
+Before you get started on the project code, import the libraries and
+resources that you'll need.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{import} \PY{n+nn}{cv2} \PY{c+c1}{\PYZsh{} computer vision library}
+        \PY{k+kn}{import} \PY{n+nn}{helpers} \PY{c+c1}{\PYZsh{} helper functions}
+        
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{image} \PY{k}{as} \PY{n+nn}{mpimg} \PY{c+c1}{\PYZsh{} for loading in images}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        ImportError                               Traceback (most recent call last)
+
+        <ipython-input-2-745721a43ffb> in <module>()
+    ----> 1 import cv2 \# computer vision library
+          2 import helpers \# helper functions
+          3 
+          4 import random
+          5 import numpy as np
+
+
+        ImportError: libavcodec.so.57: cannot open shared object file: No such file or directory
+
+    \end{Verbatim}
+
+    \hypertarget{training-and-testing-data}{%
+\subsection{Training and Testing Data}\label{training-and-testing-data}}
+
+All 1484 of the traffic light images are separated into training and
+testing datasets.
+
+\begin{itemize}
+\tightlist
+\item
+  80\% of these images are training images, for you to use as you create
+  a classifier.
+\item
+  20\% are test images, which will be used to test the accuracy of your
+  classifier.
+\item
+  All images are pictures of 3-light traffic lights with one light
+  illuminated.
+\end{itemize}
+
+\hypertarget{define-the-image-directories}{%
+\subsection{Define the image
+directories}\label{define-the-image-directories}}
+
+First, we set some variables to keep track of some where our images are
+stored:
+
+\begin{verbatim}
+IMAGE_DIR_TRAINING: the directory where our training image data is stored
+IMAGE_DIR_TEST: the directory where our test image data is stored
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Image data directories}
+        \PY{n}{IMAGE\PYZus{}DIR\PYZus{}TRAINING} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{traffic\PYZus{}light\PYZus{}images/training/}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{IMAGE\PYZus{}DIR\PYZus{}TEST} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{traffic\PYZus{}light\PYZus{}images/test/}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \hypertarget{load-the-datasets}{%
+\subsection{Load the datasets}\label{load-the-datasets}}
+
+These first few lines of code will load the training traffic light
+images and store all of them in a variable, \texttt{IMAGE\_LIST}. This
+list contains the images and their associated label (``red'',
+``yellow'', ``green'').
+
+You are encouraged to take a look at the \texttt{load\_dataset} function
+in the helpers.py file. This will give you a good idea about how lots of
+image files can be read in from a directory using the
+\href{https://pymotw.com/2/glob/}{glob library}. The
+\texttt{load\_dataset} function takes in the name of an image directory
+and returns a list of images and their associated labels.
+
+For example, the first image-label pair in \texttt{IMAGE\_LIST} can be
+accessed by index: \texttt{IMAGE\_LIST{[}0{]}{[}:{]}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Using the load\PYZus{}dataset function in helpers.py}
+        \PY{c+c1}{\PYZsh{} Load training data}
+        \PY{n}{IMAGE\PYZus{}LIST} \PY{o}{=} \PY{n}{helpers}\PY{o}{.}\PY{n}{load\PYZus{}dataset}\PY{p}{(}\PY{n}{IMAGE\PYZus{}DIR\PYZus{}TRAINING}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{visualize-the-data}{%
+\subsection{Visualize the Data}\label{visualize-the-data}}
+
+The first steps in analyzing any dataset are to 1. load the data and 2.
+look at the data. Seeing what it looks like will give you an idea of
+what to look for in the images, what kind of noise or inconsistencies
+you have to deal with, and so on. This will help you understand the
+image dataset, and \textbf{understanding a dataset is part of making
+predictions about the data}.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{visualize-the-input-images}{%
+\subsubsection{Visualize the input
+images}\label{visualize-the-input-images}}
+
+Visualize and explore the image data! Write code to display an image in
+\texttt{IMAGE\_LIST}: * Display the image * Print out the shape of the
+image * Print out its corresponding label
+
+See if you can display at least one of each type of traffic light image
+-- red, green, and yellow --- and look at their similarities and
+differences.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Write code to display an image in IMAGE\PYZus{}LIST (try finding a yellow traffic light!)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Print out 1. The shape of the image and 2. The image\PYZsq{}s label}
+        \PY{n}{cntr} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{c+c1}{\PYZsh{}ind = []}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{IMAGE\PYZus{}LIST}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shape: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                \PY{k}{break}
+        
+        \PY{c+c1}{\PYZsh{} The first image in IMAGE\PYZus{}LIST is displayed below (without information about shape or label)}
+        \PY{c+c1}{\PYZsh{}print(\PYZsq{}y imgs:\PYZsq{}, ind)}
+        \PY{n}{selected\PYZus{}image} \PY{o}{=} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{selected\PYZus{}image}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shape: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{selected\PYZus{}image}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+('shape: ', (83, 50, 3))
+('label: ', 'yellow')
+('shape: ', (55, 19, 3))
+('label: ', 'red')
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{pre-process-the-data}{%
+\section{2. Pre-process the Data}\label{pre-process-the-data}}
+
+After loading in each image, you have to standardize the input and
+output!
+
+\hypertarget{input}{%
+\subsubsection{Input}\label{input}}
+
+This means that every input image should be in the same format, of the
+same size, and so on. We'll be creating features by performing the same
+analysis on every picture, and for a classification task like this, it's
+important that \textbf{similar images create similar features}!
+
+\hypertarget{output}{%
+\subsubsection{Output}\label{output}}
+
+We also need the output to be a label that is easy to read and easy to
+compare with other labels. It is good practice to convert categorical
+data like ``red'' and ``green'' to numerical data.
+
+A very common classification output is a 1D list that is the length of
+the number of classes - three in the case of red, yellow, and green
+lights - with the values 0 or 1 indicating which class a certain image
+is. For example, since we have three classes (red, yellow, and green),
+we can make a list with the order: {[}red value, yellow value, green
+value{]}. In general, order does not matter, we choose the order {[}red
+value, yellow value, green value{]} in this case to reflect the position
+of each light in descending vertical order.
+
+A red light should have the label: {[}1, 0, 0{]}. Yellow should be:
+{[}0, 1, 0{]}. Green should be: {[}0, 0, 1{]}. These labels are called
+\textbf{one-hot encoded labels}.
+
+\emph{(Note: one-hot encoding will be especially important when you work
+with
+\href{https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/}{machine
+learning algorithms}).}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\#\# (IMPLEMENTATION): Standardize the input images
+
+\begin{itemize}
+\tightlist
+\item
+  Resize each image to the desired input size: 32x32px.
+\item
+  (Optional) You may choose to crop, shift, or rotate the images in this
+  step as well.
+\end{itemize}
+
+It's very common to have square input sizes that can be rotated (and
+remain the same size), and analyzed in smaller, square patches. It's
+also important to make all your images the same size so that they can be
+sent through the same pipeline of classification steps!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} This function should take in an RGB image and return a new, standardized version}
+        \PY{k}{def} \PY{n+nf}{standardize\PYZus{}input}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Resize image and pre\PYZhy{}process so that all \PYZdq{}standard\PYZdq{} images are the same size  }
+            \PY{n}{image\PYZus{}copy} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+            \PY{n}{standard\PYZus{}im} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image\PYZus{}copy}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{32}\PY{p}{,}\PY{l+m+mi}{32}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{n}{standard\PYZus{}im}
+            
+\end{Verbatim}
+
+
+    \hypertarget{standardize-the-output}{%
+\subsection{Standardize the output}\label{standardize-the-output}}
+
+With each loaded image, we also specify the expected output. For this,
+we use \textbf{one-hot encoding}.
+
+\begin{itemize}
+\tightlist
+\item
+  One-hot encode the labels. To do this, create an array of zeros
+  representing each class of traffic light (red, yellow, green), and set
+  the index of the expected class number to 1.
+\end{itemize}
+
+Since we have three classes (red, yellow, and green), we have imposed an
+order of: {[}red value, yellow value, green value{]}. To one-hot encode,
+say, a yellow light, we would first initialize an array to {[}0, 0, 0{]}
+and change the middle value (the yellow value) to 1: {[}0, 1, 0{]}.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\#\# (IMPLEMENTATION): Implement one-hot encoding
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: One hot encode an image label}
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Given a label \PYZhy{} \PYZdq{}red\PYZdq{}, \PYZdq{}green\PYZdq{}, or \PYZdq{}yellow\PYZdq{} \PYZhy{} return a one\PYZhy{}hot encoded label}
+         
+         \PY{c+c1}{\PYZsh{} Examples: }
+         \PY{c+c1}{\PYZsh{} one\PYZus{}hot\PYZus{}encode(\PYZdq{}red\PYZdq{}) should return: [1, 0, 0]}
+         \PY{c+c1}{\PYZsh{} one\PYZus{}hot\PYZus{}encode(\PYZdq{}yellow\PYZdq{}) should return: [0, 1, 0]}
+         \PY{c+c1}{\PYZsh{} one\PYZus{}hot\PYZus{}encode(\PYZdq{}green\PYZdq{}) should return: [0, 0, 1]}
+         
+         \PY{k}{def} \PY{n+nf}{one\PYZus{}hot\PYZus{}encode}\PY{p}{(}\PY{n}{label}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Create a one\PYZhy{}hot encoded label that works for all classes of traffic lights}
+             \PY{n}{encoded\PYZus{}signals} \PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{\PYZcb{}}
+             \PY{n}{one\PYZus{}hot\PYZus{}encoded} \PY{o}{=} \PY{n}{encoded\PYZus{}signals}\PY{p}{[}\PY{n}{label}\PY{p}{]}
+             
+             \PY{k}{return} \PY{n}{one\PYZus{}hot\PYZus{}encoded}
+\end{Verbatim}
+
+
+    \hypertarget{testing-as-you-code}{%
+\subsubsection{Testing as you Code}\label{testing-as-you-code}}
+
+After programming a function like this, it's a good idea to test it, and
+see if it produces the expected output. \textbf{In general, it's good
+practice to test code in small, functional pieces, after you write it}.
+This way, you can make sure that your code is correct as you continue to
+build a classifier, and you can identify any errors early on so that
+they don't compound.
+
+All test code can be found in the file \texttt{test\_functions.py}. You
+are encouraged to look through that code and add your own testing code
+if you find it useful!
+
+One test function you'll find is:
+\texttt{test\_one\_hot(self,\ one\_hot\_function)} which takes in one
+argument, a one\_hot\_encode function, and tests its functionality. If
+your one\_hot\_label code does not work as expected, this test will
+print ot an error message that will tell you a bit about why your code
+failed. Once your code works, this should print out TEST PASSED.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Importing the tests}
+         \PY{k+kn}{import} \PY{n+nn}{test\PYZus{}functions}
+         \PY{n}{tests} \PY{o}{=} \PY{n}{test\PYZus{}functions}\PY{o}{.}\PY{n}{Tests}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Test for one\PYZus{}hot\PYZus{}encode function}
+         \PY{n}{tests}\PY{o}{.}\PY{n}{test\PYZus{}one\PYZus{}hot}\PY{p}{(}\PY{n}{one\PYZus{}hot\PYZus{}encode}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{{TEST PASSED}}
+
+    
+    \hypertarget{construct-a-standardized_list-of-input-images-and-output-labels.}{%
+\subsection{\texorpdfstring{Construct a \texttt{STANDARDIZED\_LIST} of
+input images and output
+labels.}{Construct a STANDARDIZED\_LIST of input images and output labels.}}\label{construct-a-standardized_list-of-input-images-and-output-labels.}}
+
+This function takes in a list of image-label pairs and outputs a
+\textbf{standardized} list of resized images and one-hot encoded labels.
+
+This uses the functions you defined above to standardize the input and
+output, so those functions must be complete for this standardization to
+work!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{def} \PY{n+nf}{standardize}\PY{p}{(}\PY{n}{image\PYZus{}list}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{} Empty image data array}
+             \PY{n}{standard\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} Iterate through all the image\PYZhy{}label pairs}
+             \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{image\PYZus{}list}\PY{p}{:}
+                 \PY{n}{image} \PY{o}{=} \PY{n}{item}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{label} \PY{o}{=} \PY{n}{item}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         
+                 \PY{c+c1}{\PYZsh{} Standardize the image}
+                 \PY{n}{standardized\PYZus{}im} \PY{o}{=} \PY{n}{standardize\PYZus{}input}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+         
+                 \PY{c+c1}{\PYZsh{} One\PYZhy{}hot encode the label}
+                 \PY{n}{one\PYZus{}hot\PYZus{}label} \PY{o}{=} \PY{n}{one\PYZus{}hot\PYZus{}encode}\PY{p}{(}\PY{n}{label}\PY{p}{)}    
+         
+                 \PY{c+c1}{\PYZsh{} Append the image, and it\PYZsq{}s one hot encoded label to the full, processed list of image data }
+                 \PY{n}{standard\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{standardized\PYZus{}im}\PY{p}{,} \PY{n}{one\PYZus{}hot\PYZus{}label}\PY{p}{)}\PY{p}{)}
+                 
+             \PY{k}{return} \PY{n}{standard\PYZus{}list}
+         
+         \PY{c+c1}{\PYZsh{} Standardize all training images}
+         \PY{n}{STANDARDIZED\PYZus{}LIST} \PY{o}{=} \PY{n}{standardize}\PY{p}{(}\PY{n}{IMAGE\PYZus{}LIST}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        NameError                                 Traceback (most recent call last)
+
+        <ipython-input-12-fa67caa89330> in <module>()
+         21 
+         22 \# Standardize all training images
+    ---> 23 STANDARDIZED\_LIST = standardize(IMAGE\_LIST)
+    
+
+        <ipython-input-12-fa67caa89330> in standardize(image\_list)
+         10 
+         11         \# Standardize the image
+    ---> 12         standardized\_im = standardize\_input(image)
+         13 
+         14         \# One-hot encode the label
+
+
+        <ipython-input-9-377fc3747ac0> in standardize\_input(image)
+          4     \#\# TODO: Resize image and pre-process so that all "standard" images are the same size
+          5     image\_copy = np.copy(image)
+    ----> 6     standard\_im = cv2.resize(image\_copy,(32,32))
+          7     return standard\_im
+          8 
+
+
+        NameError: name 'cv2' is not defined
+
+    \end{Verbatim}
+
+    \hypertarget{visualize-the-standardized-data}{%
+\subsection{Visualize the standardized
+data}\label{visualize-the-standardized-data}}
+
+Display a standardized image from STANDARDIZED\_LIST and compare it with
+a non-standardized image from IMAGE\_LIST. Note that their sizes and
+appearance are different!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Display a standardized image and its label}
+         \PY{c+c1}{\PYZsh{}check the first image in IMAGE\PYZus{}LIST}
+         \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{250}
+         \PY{n}{img} \PY{o}{=} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{lbl} \PY{o}{=} \PY{n}{IMAGE\PYZus{}LIST}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{lbl}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shape:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{img}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}check the same image in the standardized list}
+         \PY{n}{img} \PY{o}{=} \PY{n}{STANDARDIZED\PYZus{}LIST}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{lbl} \PY{o}{=} \PY{n}{STANDARDIZED\PYZus{}LIST}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{lbl}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shape:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{img}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+label: red
+shape: (53, 30, 3)
+label: [1, 0, 0]
+shape: (32, 32, 3)
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{feature-extraction}{%
+\section{3. Feature Extraction}\label{feature-extraction}}
+
+You'll be using what you now about color spaces, shape analysis, and
+feature construction to create features that help distinguish and
+classify the three types of traffic light images.
+
+You'll be tasked with creating \textbf{one feature} at a minimum (with
+the option to create more). The required feature is \textbf{a brightness
+feature using HSV color space}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A brightness feature.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Using HSV color space, create a feature that helps you identify the
+    3 different classes of traffic light.
+  \item
+    You'll be asked some questions about what methods you tried to
+    locate this traffic light, so, as you progress through this
+    notebook, always be thinking about your approach: what works and
+    what doesn't?
+  \end{itemize}
+\item
+  (Optional): Create more features!
+\end{enumerate}
+
+Any more features that you create are up to you and should improve the
+accuracy of your traffic light classification algorithm! One thing to
+note is that, to pass this project you must \textbf{never classify a red
+light as a green light} because this creates a serious safety risk for a
+self-driving car. To avoid this misclassification, you might consider
+adding another feature that specifically distinguishes between red and
+green lights.
+
+These features will be combined near the end of his notebook to form a
+complete classification algorithm.
+
+    \hypertarget{creating-a-brightness-feature}{%
+\subsection{Creating a brightness
+feature}\label{creating-a-brightness-feature}}
+
+There are a number of ways to create a brightness feature that will help
+you characterize images of traffic lights, and it will be up to you to
+decide on the best procedure to complete this step. You should visualize
+and test your code as you go.
+
+Pictured below is a sample pipeline for creating a brightness feature
+(from left to right: standardized image, HSV color-masked image, cropped
+image, brightness feature):
+
+    \hypertarget{rgb-to-hsv-conversion}{%
+\subsection{RGB to HSV conversion}\label{rgb-to-hsv-conversion}}
+
+Below, a test image is converted from RGB to HSV colorspace and each
+component is displayed in an image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Convert and image to HSV colorspace}
+         \PY{c+c1}{\PYZsh{} Visualize the individual color channels}
+         
+         \PY{n}{image\PYZus{}num} \PY{o}{=} \PY{l+m+mi}{1000}
+         \PY{n}{test\PYZus{}im} \PY{o}{=} \PY{n}{STANDARDIZED\PYZus{}LIST}\PY{p}{[}\PY{n}{image\PYZus{}num}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{test\PYZus{}label} \PY{o}{=} \PY{n}{STANDARDIZED\PYZus{}LIST}\PY{p}{[}\PY{n}{image\PYZus{}num}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Convert to HSV}
+         \PY{n}{hsv} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{test\PYZus{}im}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}RGB2HSV}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Print image label}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Label [red, yellow, green]: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{test\PYZus{}label}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} HSV channels}
+         \PY{n}{h} \PY{o}{=} \PY{n}{hsv}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{s} \PY{o}{=} \PY{n}{hsv}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{v} \PY{o}{=} \PY{n}{hsv}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Plot the original image and the three channels}
+         \PY{n}{f}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{,} \PY{n}{ax3}\PY{p}{,} \PY{n}{ax4}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standardized image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{test\PYZus{}im}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H channel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{h}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S channel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{V channel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{v}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Label [red, yellow, green]: [0, 0, 1]
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.image.AxesImage at 0x7f7561877b00>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\#\# (IMPLEMENTATION): Create a brightness feature that uses HSV
+color space
+
+Write a function that takes in an RGB image and returns a 1D feature
+vector and/or single value that will help classify an image of a traffic
+light. The only requirement is that this function should apply an HSV
+colorspace transformation, the rest is up to you.
+
+From this feature, you should be able to estimate an image's label and
+classify it as either a red, green, or yellow traffic light. You may
+also define helper functions if they simplify your code.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Create a brightness feature that takes in an RGB image and outputs a feature vector and/or value}
+         \PY{c+c1}{\PYZsh{}\PYZsh{} This feature should use HSV colorspace values}
+         \PY{k}{def} \PY{n+nf}{create\PYZus{}feature}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Convert image to HSV color space}
+             \PY{n}{rgb\PYZus{}copy} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+             \PY{n}{hsv\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{rgb\PYZus{}copy}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     h = hsv\PYZus{}image[:,:,0]}
+         \PY{c+c1}{\PYZsh{}     s = hsv\PYZus{}image[:,:,1]}
+         \PY{c+c1}{\PYZsh{}     v = hsv\PYZus{}image[:,:,2]}
+         \PY{c+c1}{\PYZsh{}     f, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20,10))}
+         \PY{c+c1}{\PYZsh{}     ax1.set\PYZus{}title(\PYZsq{}H channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax1.imshow(h, cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.set\PYZus{}title(\PYZsq{}S channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.imshow(s, cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.set\PYZus{}title(\PYZsq{}V channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.imshow(v, cmap=\PYZsq{}gray\PYZsq{})}
+             \PY{c+c1}{\PYZsh{}define thresholds for the three colors and compute masks}
+             \PY{n}{lower\PYZus{}th\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{115}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{]}\PY{p}{)} 
+             \PY{n}{upper\PYZus{}th\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{130}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{]}\PY{p}{)}
+             \PY{n}{mask\PYZus{}r} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{inRange}\PY{p}{(}\PY{n}{hsv\PYZus{}image}\PY{p}{,} \PY{n}{lower\PYZus{}th\PYZus{}r}\PY{p}{,} \PY{n}{upper\PYZus{}th\PYZus{}r}\PY{p}{)}
+                 
+             \PY{n}{lower\PYZus{}th\PYZus{}g} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{]}\PY{p}{)} 
+             \PY{n}{upper\PYZus{}th\PYZus{}g} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{]}\PY{p}{)}
+             \PY{n}{mask\PYZus{}g} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{inRange}\PY{p}{(}\PY{n}{hsv\PYZus{}image}\PY{p}{,} \PY{n}{lower\PYZus{}th\PYZus{}g}\PY{p}{,} \PY{n}{upper\PYZus{}th\PYZus{}g}\PY{p}{)}
+             
+             \PY{n}{lower\PYZus{}th\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{]}\PY{p}{)} 
+             \PY{n}{upper\PYZus{}th\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{109}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{]}\PY{p}{)}
+             \PY{n}{mask\PYZus{}y} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{inRange}\PY{p}{(}\PY{n}{hsv\PYZus{}image}\PY{p}{,} \PY{n}{lower\PYZus{}th\PYZus{}y}\PY{p}{,} \PY{n}{upper\PYZus{}th\PYZus{}y}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Create and return a feature value and/or vector}
+             \PY{n}{feature} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+         
+             \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Define the masked area and mask the image}
+             \PY{c+c1}{\PYZsh{} Don\PYZsq{}t forget to make a copy of the original image to manipulate}
+             \PY{n}{masked\PYZus{}pic\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+             \PY{n}{masked\PYZus{}pic\PYZus{}g} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+             \PY{n}{masked\PYZus{}pic\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+             
+             \PY{n}{masked\PYZus{}pic\PYZus{}r}\PY{p}{[}\PY{n}{mask\PYZus{}r} \PY{o}{==} \PY{l+m+mi}{0} \PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{masked\PYZus{}pic\PYZus{}g}\PY{p}{[}\PY{n}{mask\PYZus{}g} \PY{o}{==} \PY{l+m+mi}{0} \PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{masked\PYZus{}pic\PYZus{}y}\PY{p}{[}\PY{n}{mask\PYZus{}y} \PY{o}{==} \PY{l+m+mi}{0} \PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}     plt.figure()}
+         \PY{c+c1}{\PYZsh{}     plt.imshow(mask\PYZus{}g)}
+         \PY{c+c1}{\PYZsh{}     plt.figure()}
+         \PY{c+c1}{\PYZsh{}     plt.imshow(masked\PYZus{}pic\PYZus{}g)}
+         \PY{c+c1}{\PYZsh{}     plt.figure()}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+             \PY{n}{hsv\PYZus{}r} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{masked\PYZus{}pic\PYZus{}r}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+             \PY{n}{hsv\PYZus{}g} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{masked\PYZus{}pic\PYZus{}g}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+             \PY{n}{hsv\PYZus{}y} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{masked\PYZus{}pic\PYZus{}y}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} take the h channel only to compute the intensity}
+             \PY{n}{h\PYZus{}r} \PY{o}{=} \PY{n}{hsv\PYZus{}r}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{h\PYZus{}g} \PY{o}{=} \PY{n}{hsv\PYZus{}g}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{h\PYZus{}y} \PY{o}{=} \PY{n}{hsv\PYZus{}y}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+             
+         \PY{c+c1}{\PYZsh{}     f, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20,10))}
+         \PY{c+c1}{\PYZsh{}     ax1.set\PYZus{}title(\PYZsq{}H channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax1.imshow(hsv\PYZus{}g[:,:,0], cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.set\PYZus{}title(\PYZsq{}S channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.imshow(hsv\PYZus{}g[:,:,1], cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.set\PYZus{}title(\PYZsq{}V channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.imshow(hsv\PYZus{}g[:,:,2], cmap=\PYZsq{}gray\PYZsq{})}
+             \PY{c+c1}{\PYZsh{}calculate the intensity:}
+             \PY{c+c1}{\PYZsh{}  =\PYZgt{} In this case, assume all the pixels are white }
+             \PY{c+c1}{\PYZsh{}    \PYZhy{}\PYZgt{} total intensity = 32x32x255 \PYZhy{}\PYZgt{} which is a big number}
+             \PY{c+c1}{\PYZsh{} So, I divided that number by 255 just reduce it to just 32x32 = 1024}
+             \PY{c+c1}{\PYZsh{} [ what I need, in this case, is relative intensity value ]}
+             \PY{n}{r\PYZus{}intensity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{h\PYZus{}r}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{255}
+             \PY{n}{g\PYZus{}intensity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{h\PYZus{}g}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{255}
+             \PY{n}{y\PYZus{}intensity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{h\PYZus{}y}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{255}
+             
+             \PY{n}{feature} \PY{o}{=} \PY{p}{[}\PY{n}{r\PYZus{}intensity}\PY{p}{,} \PY{n}{y\PYZus{}intensity}\PY{p}{,} \PY{n}{g\PYZus{}intensity}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}     print(\PYZsq{}[r,g,b]:\PYZsq{},feature)}
+         
+             
+             \PY{k}{return} \PY{n}{feature}
+         \PY{c+c1}{\PYZsh{} \PYZsh{}[723 \PYZhy{}757}
+         \PY{c+c1}{\PYZsh{} image\PYZus{}num = 980}
+         \PY{c+c1}{\PYZsh{} test\PYZus{}im = STANDARDIZED\PYZus{}LIST[image\PYZus{}num][0]}
+         \PY{c+c1}{\PYZsh{} test\PYZus{}label = STANDARDIZED\PYZus{}LIST[image\PYZus{}num][1]}
+         \PY{c+c1}{\PYZsh{} create\PYZus{}feature(test\PYZus{}im)}
+         
+         \PY{c+c1}{\PYZsh{}     print(\PYZsq{}h intens val:\PYZsq{}, h\PYZus{}intensity)}
+         \PY{c+c1}{\PYZsh{}     f, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20,10))}
+         \PY{c+c1}{\PYZsh{}     ax1.set\PYZus{}title(\PYZsq{}H channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax1.imshow(h, cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.set\PYZus{}title(\PYZsq{}S channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax2.imshow(s, cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.set\PYZus{}title(\PYZsq{}V channel\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}     ax3.imshow(v, cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{} plt.figure()}
+         \PY{c+c1}{\PYZsh{} plt.imshow(rgb\PYZus{}image)}
+\end{Verbatim}
+
+
+    \hypertarget{optional-create-more-features-to-help-accurately-label-the-traffic-light-images}{%
+\subsection{(Optional) Create more features to help accurately label the
+traffic light
+images}\label{optional-create-more-features-to-help-accurately-label-the-traffic-light-images}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} (Optional) Add more image analysis and create more features}
+\end{Verbatim}
+
+
+    \hypertarget{question-1-how-do-the-features-you-made-help-you-distinguish-between-the-3-classes-of-traffic-light-images}{%
+\subsection{(QUESTION 1): How do the features you made help you
+distinguish between the 3 classes of traffic light
+images?}\label{question-1-how-do-the-features-you-made-help-you-distinguish-between-the-3-classes-of-traffic-light-images}}
+
+    \textbf{Answer:} Write your answer in this cell.
+
+    \hypertarget{classification-and-visualizing-error}{%
+\section{4. Classification and Visualizing
+Error}\label{classification-and-visualizing-error}}
+
+Using all of your features, write a function that takes in an RGB image
+and, using your extracted features, outputs whether a light is red,
+green or yellow as a one-hot encoded label. This classification function
+should be able to classify any image of a traffic light!
+
+You are encouraged to write any helper functions or visualization code
+that you may need, but for testing the accuracy, make sure that this
+\texttt{estimate\_label} function returns a one-hot encoded label.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\#\# (IMPLEMENTATION): Build a complete classifier
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{c+c1}{\PYZsh{} This function should take in RGB image input}
+         \PY{c+c1}{\PYZsh{} Analyze that image using your feature creation code and output a one\PYZhy{}hot encoded label}
+         \PY{k}{def} \PY{n+nf}{estimate\PYZus{}label}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Extract feature(s) from the RGB image and use those features to}
+             \PY{c+c1}{\PYZsh{}\PYZsh{} classify the image and output a one\PYZhy{}hot encoded label}
+             
+             \PY{c+c1}{\PYZsh{} get the features from the rgb image}
+             \PY{c+c1}{\PYZsh{}  =\PYZgt{} features contains a list of red, yellow, and green intensity values}
+             \PY{c+c1}{\PYZsh{}     like the following: [10.0, 0.0, 323.233]}
+             \PY{n}{features} \PY{o}{=} \PY{n}{create\PYZus{}feature}\PY{p}{(}\PY{n}{rgb\PYZus{}image}\PY{p}{)}
+            
+             \PY{c+c1}{\PYZsh{}store the labels in a list}
+             \PY{n}{labels} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             
+             \PY{k}{if} \PY{n}{features}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mf}{0.0} \PY{o+ow}{and} \PY{n}{features}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{l+m+mf}{0.0} \PY{o+ow}{and} \PY{n}{features}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mf}{0.0}\PY{p}{:}
+                 \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{1}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{}get the index of the maximum value in the list}
+                 \PY{n}{index} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{features}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{}get the associated label from the labels list defined above}
+             \PY{n}{label} \PY{o}{=} \PY{n}{labels}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{}get the hot encoded label}
+             \PY{n}{predicted\PYZus{}label} \PY{o}{=} \PY{n}{one\PYZus{}hot\PYZus{}encode}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+             
+             \PY{k}{return} \PY{n}{predicted\PYZus{}label}   
+             
+\end{Verbatim}
+
+
+    \hypertarget{testing-the-classifier}{%
+\subsection{Testing the classifier}\label{testing-the-classifier}}
+
+Here is where we test your classification algorithm using our test set
+of data that we set aside at the beginning of the notebook! This project
+will be complete once you've pogrammed a ``good'' classifier.
+
+A ``good'' classifier in this case should meet the following criteria
+(and once it does, feel free to submit your project): 1. Get above 90\%
+classification accuracy. 2. Never classify a red light as a green light.
+
+\hypertarget{test-dataset}{%
+\subsubsection{Test dataset}\label{test-dataset}}
+
+Below, we load in the test dataset, standardize it using the
+\texttt{standardize} function you defined above, and then
+\textbf{shuffle} it; this ensures that order will not play a role in
+testing accuracy.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{c+c1}{\PYZsh{} Using the load\PYZus{}dataset function in helpers.py}
+         \PY{c+c1}{\PYZsh{} Load test data}
+         \PY{n}{TEST\PYZus{}IMAGE\PYZus{}LIST} \PY{o}{=} \PY{n}{helpers}\PY{o}{.}\PY{n}{load\PYZus{}dataset}\PY{p}{(}\PY{n}{IMAGE\PYZus{}DIR\PYZus{}TEST}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Standardize the test data}
+         \PY{n}{STANDARDIZED\PYZus{}TEST\PYZus{}LIST} \PY{o}{=} \PY{n}{standardize}\PY{p}{(}\PY{n}{TEST\PYZus{}IMAGE\PYZus{}LIST}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Shuffle the standardized test data}
+         \PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{STANDARDIZED\PYZus{}TEST\PYZus{}LIST}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{determine-the-accuracy}{%
+\subsection{Determine the Accuracy}\label{determine-the-accuracy}}
+
+Compare the output of your classification algorithm (a.k.a. your
+``model'') with the true labels and determine the accuracy.
+
+This code stores all the misclassified images, their predicted labels,
+and their true labels, in a list called \texttt{MISCLASSIFIED}. This
+code is used for testing and \emph{should not be changed}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{c+c1}{\PYZsh{} Constructs a list of misclassified images given a list of test images and their labels}
+         \PY{c+c1}{\PYZsh{} This will throw an AssertionError if labels are not standardized (one\PYZhy{}hot encoded)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}misclassified\PYZus{}images}\PY{p}{(}\PY{n}{test\PYZus{}images}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Track misclassified images by placing them into a list}
+             \PY{n}{misclassified\PYZus{}images\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} Iterate through all the test images}
+             \PY{c+c1}{\PYZsh{} Classify each image and compare to the true label}
+             \PY{k}{for} \PY{n}{image} \PY{o+ow}{in} \PY{n}{test\PYZus{}images}\PY{p}{:}
+         
+                 \PY{c+c1}{\PYZsh{} Get true data}
+                 \PY{n}{im} \PY{o}{=} \PY{n}{image}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{true\PYZus{}label} \PY{o}{=} \PY{n}{image}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                 \PY{k}{assert}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{true\PYZus{}label}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The true\PYZus{}label is not the expected length (3).}\PY{l+s+s2}{\PYZdq{}}
+         
+                 \PY{c+c1}{\PYZsh{} Get predicted label from your classifier}
+                 \PY{n}{predicted\PYZus{}label} \PY{o}{=} \PY{n}{estimate\PYZus{}label}\PY{p}{(}\PY{n}{im}\PY{p}{)}
+                 \PY{k}{assert}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{predicted\PYZus{}label}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The predicted\PYZus{}label is not the expected length (3).}\PY{l+s+s2}{\PYZdq{}}
+         
+                 \PY{c+c1}{\PYZsh{} Compare true and predicted labels }
+                 \PY{k}{if}\PY{p}{(}\PY{n}{predicted\PYZus{}label} \PY{o}{!=} \PY{n}{true\PYZus{}label}\PY{p}{)}\PY{p}{:}
+                     \PY{c+c1}{\PYZsh{} If these labels are not equal, the image has been misclassified}
+                     \PY{n}{misclassified\PYZus{}images\PYZus{}labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{im}\PY{p}{,} \PY{n}{predicted\PYZus{}label}\PY{p}{,} \PY{n}{true\PYZus{}label}\PY{p}{)}\PY{p}{)}
+                     
+             \PY{c+c1}{\PYZsh{} Return the list of misclassified [image, predicted\PYZus{}label, true\PYZus{}label] values}
+             \PY{k}{return} \PY{n}{misclassified\PYZus{}images\PYZus{}labels}
+         
+         
+         \PY{c+c1}{\PYZsh{} Find all misclassified images in a given test set}
+         \PY{n}{MISCLASSIFIED} \PY{o}{=} \PY{n}{get\PYZus{}misclassified\PYZus{}images}\PY{p}{(}\PY{n}{STANDARDIZED\PYZus{}TEST\PYZus{}LIST}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Accuracy calculations}
+         \PY{n}{total} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{STANDARDIZED\PYZus{}TEST\PYZus{}LIST}\PY{p}{)}
+         \PY{n}{num\PYZus{}correct} \PY{o}{=} \PY{n}{total} \PY{o}{\PYZhy{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{MISCLASSIFIED}\PY{p}{)}
+         \PY{n}{accuracy} \PY{o}{=} \PY{n}{num\PYZus{}correct}\PY{o}{/}\PY{n}{total}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Accuracy: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{accuracy}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of misclassified images = }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{MISCLASSIFIED}\PY{p}{)}\PY{p}{)} \PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ out of }\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{total}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy: 0.9023569023569024
+Number of misclassified images = 29 out of 297
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\#\# Visualize the misclassified images
+
+Visualize some of the images you classified wrong (in the
+\texttt{MISCLASSIFIED} list) and note any qualities that make them
+difficult to classify. This will help you identify any weaknesses in
+your classification algorithm.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} \PY{c+c1}{\PYZsh{} Visualize misclassified example(s)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Display an image in the `MISCLASSIFIED` list }
+         \PY{c+c1}{\PYZsh{}\PYZsh{} TODO: Print out its predicted label \PYZhy{} to see what the image *was* incorrectly classified as}
+         \PY{k}{for} \PY{n}{img} \PY{o+ow}{in} \PY{n}{MISCLASSIFIED}\PY{p}{:}
+         \PY{c+c1}{\PYZsh{}     print(\PYZsq{}predicted label:\PYZsq{},img[1])}
+         \PY{c+c1}{\PYZsh{}     print(\PYZsq{}     true label:\PYZsq{},img[2])}
+            
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pred:}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{img}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ true:}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{img}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(\PYZsq{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/matplotlib/pyplot.py:523: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max\_open\_warning`).
+  max\_open\_warning, RuntimeWarning)
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_12.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_14.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_15.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_17.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_19.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_20.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_21.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_22.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_23.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_24.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_25.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_26.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_27.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_28.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_29.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+ \#\# (Question 2): After visualizing these misclassifications, what
+weaknesses do you think your classification algorithm has? Please note
+at least two.
+
+    \textbf{Answer:} Write your answer in this cell.
+
+    \hypertarget{test-if-you-classify-any-red-lights-as-green}{%
+\subsection{Test if you classify any red lights as
+green}\label{test-if-you-classify-any-red-lights-as-green}}
+
+\textbf{To pass this project, you must not classify any red lights as
+green!} Classifying red lights as green would cause a car to drive
+through a red traffic light, so this red-as-green error is very
+dangerous in the real world.
+
+The code below lets you test to see if you've misclassified any red
+lights as green in the test set. \textbf{This test assumes that
+\texttt{MISCLASSIFIED} is a list of tuples with the order:
+{[}misclassified\_image, predicted\_label, true\_label{]}.}
+
+Note: this is not an all encompassing test, but its a good indicator
+that, if you pass, you are on the right track! This iterates through
+your list of misclassified examples and checks to see if any red traffic
+lights have been mistakenly labelled {[}0, 1, 0{]} (green).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Importing the tests}
+        \PY{k+kn}{import} \PY{n+nn}{test\PYZus{}functions}
+        \PY{n}{tests} \PY{o}{=} \PY{n}{test\PYZus{}functions}\PY{o}{.}\PY{n}{Tests}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{if}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{MISCLASSIFIED}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} Test code for one\PYZus{}hot\PYZus{}encode function}
+            \PY{n}{tests}\PY{o}{.}\PY{n}{test\PYZus{}red\PYZus{}as\PYZus{}green}\PY{p}{(}\PY{n}{MISCLASSIFIED}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MISCLASSIFIED may not have been populated with images.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{improve-your-algorithm}{%
+\section{5. Improve your algorithm!}\label{improve-your-algorithm}}
+
+\textbf{Submit your project after you have completed all
+implementations, answered all questions, AND when you've met the two
+criteria:} 1. Greater than 90\% accuracy classification 2. No red lights
+classified as green
+
+If you did not meet these requirements (which is common on the first
+attempt!), revisit your algorithm and tweak it to improve light
+recognition -- this could mean changing the brightness feature,
+performing some background subtraction, or adding another feature!
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \hypertarget{going-further-optional-challenges}{%
+\subsubsection{Going Further (Optional
+Challenges)}\label{going-further-optional-challenges}}
+
+If you found this challenge easy, I suggest you go above and beyond!
+Here are a couple \textbf{optional} (meaning you do not need to
+implement these to submit and pass the project) suggestions: *
+(Optional) Aim for \textgreater{}95\% classification accuracy. *
+(Optional) Some lights are in the shape of arrows; further classify the
+lights as round or arrow-shaped. * (Optional) Add another feature and
+aim for as close to 100\% accuracy as you can get!
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

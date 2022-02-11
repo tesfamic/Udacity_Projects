@@ -1,0 +1,5 @@
+
+Take a look at the requirements from the original repository.
+
+https://github.com/udacity/CarND-Capstone/blob/master/requirements.txt
+
