@@ -1,19 +1,17 @@
 # Route Planning Project
 
-This repo contains the starter code for the Route Planning project.
+  <img src="map.png" width="600" height="450" />
 
-<img src="map.png" width="600" height="450" />
-
+  The repo here is the completed version. However, if you're interested to see the starter code, the following repo from Udacity is available.
 ## Cloning
-
-When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
-```
-git clone https://github.com/udacity/CppND-Route-Planning-Project.git --recurse-submodules
-```
-or with SSH:
-```
-git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-submodules
-```
+  When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
+  ```
+  git clone https://github.com/udacity/CppND-Route-Planning-Project.git --recurse-submodules
+  ```
+  or with SSH:
+  ```
+  git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-submodules
+  ```
 
 ## Dependencies for Running Locally
 * cmake >= 3.11.3
@@ -63,17 +61,17 @@ git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-subm
     4. Install Cairo: `sudo apt install libcairo2-dev`
     5. Install graphicsmagick: `sudo apt install libgraphicsmagick1-dev`
     6. Install libpng: `sudo apt install libpng-dev`
-
-    Example of CMake execution:
-    ```
-    git clone --recurse-submodules https://github.com/cpp-io2d/P0267_RefImpl
-    cd P0267_RefImpl
-    mkdir Debug
-    cd Debug
-    cmake --config Debug "-DCMAKE_BUILD_TYPE=Debug" ..
-    cmake --build .
-    ## Compiling and Running
-
+    7. Do the following
+       ```
+       git clone --recurse-submodules https://github.com/cpp-io2d/P0267_RefImpl
+       cd P0267_RefImpl
+       mkdir Debug
+       cd Debug
+       cmake --config Debug "-DCMAKE_BUILD_TYPE=Debug" ..
+       cmake --build .
+       cmake --install .
+       sudo ldconfig
+      ```
 ### Compiling
 To compile the project, first, create a `build` directory and change to that directory:
 ```
