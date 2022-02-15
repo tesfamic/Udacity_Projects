@@ -36,9 +36,9 @@ The goals / steps of this project are the following:
 
 ---
 
-### STEPS
+### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.
 
 ### Camera Calibration
 
@@ -63,7 +63,7 @@ As can be seen in the images below, the effect of undistortion is visible on the
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-> I used a combination of color and gradient thresholds to generate a binary image. For the gradient thresholding, Sobel operation in x-gradient is used and for the color thresholding the s-channel of HLS color space is implemented. This thresholding operations are implemented in code cell 2 (collection of functions) in jupyter notebook (lane_detector.ipynb). Here's an example of my output for this step using one of the test images provided.
+> I used a combination of color and gradient thresholds to generate a binary image. For the gradient thresholding, Sobel operation in x-gradient is used and for the color thresholding the s-channel of HLS color space is implemented. This thresholding operations are implemented in code cell 2 (collection of functions) in jupyter notebook (lane_detector_v2.ipynb). Here's an example of my output for this step using one of the test images provided.
 
 ![alt text][image4] 
 ![alt text][image5]
