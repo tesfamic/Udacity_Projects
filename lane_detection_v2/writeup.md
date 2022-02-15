@@ -36,11 +36,9 @@ The goals / steps of this project are the following:
 
 ---
 
-### Writeup / README
+### STEPS
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
-
-[You're reading it!](https://github.com/tesfamic/CarND-Advanced-Lane-Lines/edit/master/writeup.md)
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
 
 ### Camera Calibration
 
