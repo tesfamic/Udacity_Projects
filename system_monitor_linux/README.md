@@ -22,9 +22,7 @@ This project uses [Make](https://www.gnu.org/software/make/). The Makefile has f
 
 ## Instructions
 
-1. Clone the project repository: `git clone https://github.com/udacity/CppND-System-Monitor-Project-Updated.git`
-
-2. Build the project: `make build`
-
-3. Run the resulting executable: `./build/monitor`
-![Starting System Monitor](images/starting_monitor.png)
+1. If you want to challenge yourself, clone the udacity repo and complete the 'TODO's in each ```src/*.cpp``` file. `git clone https://github.com/udacity/CppND-System-Monitor-Project-Updated.git`
+2. Otherwise, clone this project 
+3. Build the project: `make build`
+4. Run the resulting executable: `./build/monitor`
