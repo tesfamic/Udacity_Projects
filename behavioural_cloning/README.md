@@ -18,7 +18,7 @@ The project contains five files:
 
 My result:
 ---
-<video src='output.mp4' />
+[my result - output.mp4](output.mp4)
 
 The Project
 ---
