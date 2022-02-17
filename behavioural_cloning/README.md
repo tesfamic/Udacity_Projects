@@ -15,6 +15,11 @@ The project contains five files:
 * a report writeup file (pdf)
 * output.mp4 (a video recording of a vehicle driving autonomously around the track for at least one full lap)
 
+
+My result:
+---
+<video src='output.mp4' />
+
 The Project
 ---
 The goals / steps of this project are the following:
