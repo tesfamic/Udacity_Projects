@@ -22,7 +22,7 @@ def generator(samples, batch_size=32):
 
             images = []
             angles = []
-            main_path = 'C:/Users/Tesfamichael/Documents/udacity/CarND-Behavioral-Cloning-P3-master/data/'
+            main_path = '/CarND-Behavioral-Cloning-P3-master/data/'
             for batch_sample in batch_samples:
                 center_name = batch_sample[0].split('/')[-1]
                 left_name = batch_sample[1].split('/')[-1]
@@ -54,7 +54,7 @@ def prep_data(samples,src):
     if src == 'local':
         main_path = ''
     else:
-        main_path = 'C:/Users/Tesfamichael/Documents/udacity/CarND-Behavioral-Cloning-P3-master/data/'
+        main_path = '/CarND-Behavioral-Cloning-P3-master/data/'
 
     for sample in samples:
         center_name = sample[0].split('/')[-1]
